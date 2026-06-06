@@ -10,7 +10,9 @@
         <h1 class="text-xl font-bold text-gray-900">Layanan & Promo</h1>
         <p class="text-sm text-gray-400 mt-0.5">Kelola daftar layanan dan program promosi aktif di platform BersihIn</p>
     </div>
-    <button class="flex items-center gap-2 px-4 py-2.5 bg-[#064E3B] text-white text-sm font-semibold rounded-lg hover:bg-emerald-800 transition">
+    <button
+    onclick="document.getElementById('modalTambahLayanan').classList.remove('hidden')"
+    class="flex items-center gap-2 px-4 py-2.5 bg-[#064E3B] text-white text-sm font-semibold rounded-lg hover:bg-emerald-800 transition">
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
         </svg>
@@ -155,4 +157,92 @@ function switchTab(tab) {
 }
 </script>
 
+{{-- MODAL TAMBAH LAYANAN --}}
+<div id="modalTambahLayanan"
+     class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+     onclick="if(event.target===this)this.classList.add('hidden')">
+
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md mx-4"
+         onclick="event.stopPropagation()">
+
+        <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+            <h3 class="font-bold text-gray-900">Tambah Layanan Baru</h3>
+
+            <button
+                onclick="document.getElementById('modalTambahLayanan').classList.add('hidden')"
+                class="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center">
+                ✕
+            </button>
+        </div>
+
+        <form action="/bersihin/admin/layanan/tambah" method="POST">
+            @csrf
+
+            <div class="px-6 py-5 space-y-4">
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">
+                        Nama Layanan
+                    </label>
+                    <input
+                        type="text"
+                        name="service_name"
+                        required
+                        class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">
+                        Deskripsi
+                    </label>
+                    <textarea
+                        name="description"
+                        rows="3"
+                        class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">
+                        Durasi (menit)
+                    </label>
+
+                    <input
+                        type="number"
+                        name="duration"
+                        required
+                        placeholder="60"
+                        class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">
+                        Harga
+                    </label>
+                    <input
+                        type="number"
+                        name="price"
+                        required
+                        class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm">
+                </div>
+
+            </div>
+
+            <div class="px-6 py-4 border-t border-gray-100 flex gap-3">
+                <button
+                    type="button"
+                    onclick="document.getElementById('modalTambahLayanan').classList.add('hidden')"
+                    class="flex-1 border border-gray-200 text-gray-600 text-sm font-semibold py-2.5 rounded-xl">
+                    Batal
+                </button>
+
+                <button
+                    type="submit"
+                    class="flex-1 bg-[#064E3B] text-white text-sm font-semibold py-2.5 rounded-xl">
+                    Simpan
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
 @endsection

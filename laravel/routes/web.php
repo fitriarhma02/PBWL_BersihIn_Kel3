@@ -140,6 +140,35 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/bersihin/admin/detail-pesanan', function () {
         return view('bersihin.admin.detail-pesanan');
     });
+
+    Route::post('/bersihin/admin/petugas/tambah', function () {
+
+    $user = \App\Models\User::create([
+        'name' => request('name'),
+        'email' => request('email'),
+        'password' => bcrypt('password123')
+    ]);
+
+    $user->assignRole('petugas');
+
+    return redirect('/bersihin/admin/petugas')
+        ->with('success', 'Petugas berhasil ditambahkan');
+    });
+
+    Route::post('/bersihin/admin/layanan/tambah', function () {
+
+   \DB::table('services')->insert([
+    'service_name' => request('service_name'),
+    'description'  => request('description'),
+    'price'        => request('price'),
+    'duration'     => request('duration'),
+    'created_at'   => now(),
+    'updated_at'   => now(),
+    ]);
+
+    return redirect('/bersihin/admin/layanan')
+        ->with('success', 'Layanan berhasil ditambahkan');
+    });
 });
 
 // ===== PETUGAS ONLY =====

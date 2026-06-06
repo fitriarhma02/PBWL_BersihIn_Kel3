@@ -169,18 +169,25 @@
             {{-- Kanan: Toggle (petugas) + Notif + User --}}
             <div class="topbar-right">
 
-                {{-- Toggle Status Kerja (khusus petugas) --}}
-                @if(auth()->user()->hasRole('petugas'))
-                <div class="status-toggle">
-                    <span class="status-label-text">Status Kerja</span>
-                    <button onclick="toggleStatus(this)" class="toggle-btn active-toggle">
-                        <span class="toggle-dot translate-x-5"></span>
-                    </button>
-                    <span id="statusLabel" class="status-text">Aktif</span>
-                </div>
-                @endif
+               {{-- Toggle Status Kerja (hanya dashboard petugas) --}}
+            @if(
+                auth()->user()->hasRole('petugas') &&
+                request()->is('bersihin/petugas/dashboard')
+            )
+            <div class="status-toggle">
+                <span class="status-label-text">Status Kerja</span>
+                <button onclick="toggleStatus(this)" class="toggle-btn active-toggle">
+                    <span class="toggle-dot translate-x-5"></span>
+                </button>
+                <span id="statusLabel" class="status-text">Aktif</span>
+            </div>
+            @endif
 
                 {{-- Notifikasi --}}
+                @if(
+                    auth()->user()->hasRole('petugas') &&
+                    request()->is('bersihin/petugas/dashboard')
+                )
                 <div class="notif-wrap" onclick="toggleNotif()">
                     <button class="icon-btn">
                         <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -226,6 +233,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
                 {{-- User Info --}}
                 <div class="user-info">

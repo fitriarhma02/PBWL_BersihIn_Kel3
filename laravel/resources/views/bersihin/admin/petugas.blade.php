@@ -137,16 +137,22 @@
         </div>
 
         {{-- Modal Body --}}
+        <form action="/bersihin/admin/petugas/tambah" method="POST">
+        @csrf
+
         <div class="px-6 py-5 space-y-4">
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1.5">Nama Lengkap</label>
-                <input type="text" placeholder="Masukkan nama lengkap"
-                    class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-green-600">
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Masukkan nama lengkap"
+                    class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm">
             </div>
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1.5">Nomor Telepon</label>
-                <input type="tel" placeholder="08xxxxxxxxxx"
-                    class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-green-600">
+               <input type="tel" name="phone" placeholder="08xxxxxxxxxx"
+                class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-green-600">
             </div>
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1.5">Keahlian</label>
@@ -161,8 +167,8 @@
             </div>
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1.5">Email</label>
-                <input type="email" placeholder="email@example.com"
-                    class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-green-600">
+                <input type="email" name="email" placeholder="email@example.com"
+                class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-green-600">
             </div>
         </div>
 
@@ -172,15 +178,12 @@
                 class="flex-1 border border-gray-200 text-gray-600 text-sm font-semibold py-2.5 rounded-xl hover:bg-gray-50">
                 Batal
             </button>
-            <button onclick="
-                document.getElementById('modalTambahPetugas').classList.add('hidden');
-                document.getElementById('toastSukses').classList.remove('hidden');
-                setTimeout(()=>document.getElementById('toastSukses').classList.add('hidden'), 3000)"
+            <button type="submit"
                 class="flex-1 bg-[#064E3B] text-white text-sm font-semibold py-2.5 rounded-xl hover:bg-emerald-800">
                 Simpan Petugas
             </button>
         </div>
-
+        </form>
     </div>
 </div>
 
