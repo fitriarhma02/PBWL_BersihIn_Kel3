@@ -4,6 +4,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+Route::get('/', function () {
+    return redirect('/bersihin');
+});
+
 if (!function_exists('kirimNotif')) {
     function kirimNotif($userId, $title, $message, $type = 'info', $icon = 'info') {
         \DB::table('notifications')->insert([
@@ -19,10 +23,6 @@ if (!function_exists('kirimNotif')) {
     }
 }
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
