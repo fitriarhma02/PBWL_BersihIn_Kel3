@@ -127,8 +127,7 @@
                 <div class="mt-8 text-center">
                     <p class="text-sm text-gray-500">
                         Belum punya akun? 
-                        <a href="/register" class="text-[#064E3B] font-bold hover:underline decoration-2 underline-offset-4">Daftar sekarang</a>
-                    </p>
+                       <a href="/bersihin/register" class="text-[#064E3B] font-bold hover:underline decoration-2 underline-offset-4">Daftar sekarang</a>
                 </div>
             </div>
         </div>

@@ -643,7 +643,7 @@ Route::middleware(['auth', 'role:customer'])->group(function () {
         return view('bersihin.customer.pembayaran', compact('booking'));
     });
 
-    // Pembayaran POST — kirim bukti, status tetap pending sampai admin approve
+    // Pembayaran POST 
    Route::post('/bersihin/pembayaran', function () {
     $bookingId = request('booking_id');
     $payment   = \DB::table('payments')->where('booking_id', $bookingId)->first();
